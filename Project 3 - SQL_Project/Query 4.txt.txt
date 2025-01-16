@@ -1,0 +1,11 @@
+/*Top 5 Artists has the most sales*/
+
+SELECT ar.Name AS Artist,
+       SUM(quantity * il.UnitPrice) AS Totalspent
+FROM InvoiceLine il
+JOIN Track t ON il.TrackId = t.TrackId
+JOIN Album a ON t.AlbumId = a.AlbumId
+JOIN Artist ar ON a.ArtistId = ar.ArtistId
+GROUP BY ar.Name
+ORDER BY Totalspent DESC
+LIMIT 5

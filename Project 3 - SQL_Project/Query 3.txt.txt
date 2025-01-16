@@ -1,0 +1,10 @@
+/* Top 3 Customers by total spent */
+
+SELECT FirstName || ' ' || LastName AS Customer_Name,
+       SUM(Total) AS Totalspent
+FROM Invoice i
+JOIN Customer c ON i.CustomerId = c.CustomerId
+GROUP BY FirstName,
+         LastName
+ORDER BY Totalspent DESC
+LIMIT 3
